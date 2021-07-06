@@ -1,1 +1,62 @@
-<html>  <head>    <title>Pegasus Orbit ON03AT</title>    <meta name="viewport" content="initial-scale=1.0">    <meta author="Sergii Kauk">    <meta charset="utf-8">    <style>      html, body {        height: 100%;        margin: 0;        padding: 0;      }      #map {        height: 100%;      }    </style>  </head>  <body>    <div id="map"></div>    <script src="pegasus.js"></script>    <script>      function initMap() {	var map = new google.maps.Map(document.getElementById('map'), {          draggable : false,          draggableCursor: 'arrow',  	  minZoom: 1,          maxZoom: 6,          zoom: 3,          streetViewControl: false,        });	var pegasus = new orbits.Satellite({          pathLength: 1,          map: map,          markerOpts: {    	    icon: {      	      anchor: new google.maps.Point(11, 11),      	      path: 'm5.000005,8.500003l3.5,2l0,4l-3.5,-2l0,-4zm3.4,2l3.5,-2l-3.5,-2l-3.5,2l3.5,2zm7,0l-3.5,2l0,4l3.5,-2l0,-4zm-7,4l3.5,2l0,-4l-3.5,-2l0,4zm3.5,-2l3.5,-2l-3.5,-2l-3.5,2l3.5,2zm-1.7,3l0,6m0,-20l0,8m-1.8,3l-6.9,4m17.3,-10l-5.2,3',      	      strokeWeight: 1            }          },          polylineOpts: {            strokeWeight: 0.5,            strokeColor: 'black',            strokeOpacity: 0.5          },	  drawShadowPolylines: false,          tle: new orbits.TLE(_tle),        });        setInterval(function() {          pegasus.refresh();          pegasus.refresh_path();          map.panTo(pegasus.position);        }, 1000);      }    </script>    <script src="https://rgp.io/orbits-js/orbits.js"></script>    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ95SJdj6N0Q7ri-zXGmjkat1CN4RwszU&callback=initMap"async defer></script>  </body></html>
+<html>
+  <head>
+    <title>Pegasus Orbit ON03AT</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta author="Sergii Kauk">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="pegasus.js"></script>
+    <script>
+      function initMap() {
+	      var map = new google.maps.Map(document.getElementById('map'), {
+          draggable : false,
+          draggableCursor: 'arrow',
+  	      minZoom: 1,
+          maxZoom: 6,
+          zoom: 3,
+          streetViewControl: false,
+        });
+
+	      var pegasus = new orbits.Satellite({
+          pathLength: 1,
+          map: map,
+          markerOpts: {
+    	    icon: {
+      	      anchor: new google.maps.Point(11, 11),
+      	      path: 'm5.000005,8.500003l3.5,2l0,4l-3.5,-2l0,-4zm3.4,2l3.5,-2l-3.5,-2l-3.5,2l3.5,2zm7,0l-3.5,2l0,4l3.5,-2l0,-4zm-7,4l3.5,2l0,-4l-3.5,-2l0,4zm3.5,-2l3.5,-2l-3.5,-2l-3.5,2l3.5,2zm-1.7,3l0,6m0,-20l0,8m-1.8,3l-6.9,4m17.3,-10l-5.2,3',
+      	      strokeWeight: 1
+            }
+          },
+          polylineOpts: {
+            strokeWeight: 0.5,
+            strokeColor: 'black',
+            strokeOpacity: 0.5
+          },
+	        drawShadowPolylines: false,
+          tle: new orbits.TLE(_tle),
+        });
+
+        setInterval(function() {
+          pegasus.refresh();
+          pegasus.refresh_path();
+          map.panTo(pegasus.position);
+        }, 1000);
+      }
+    </script>
+    <script src="https://rgp.io/orbits-js/orbits.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ95SJdj6N0Q7ri-zXGmjkat1CN4RwszU&callback=initMap"
+async defer></script>
+  </body>
+</html>
